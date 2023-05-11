@@ -141,7 +141,7 @@ ORDER BY customers DESC
 -- For 2023 top product categories are plastic wrap,vaccum sealer bags, alumnium foil
 
 
--- For the customers who abandoned the product between the product_page and add to cart phase, which product category were they looking at?
+-- For the customers who did not proceed to "add to cart" phase from "product page", which product category were they looking at?
 
 WITH landing_page AS (SELECT customer_id FROM dbo.EcommerceCustomers
 WHERE landing_page = 'TRUE'),
@@ -157,6 +157,9 @@ SELECT Product_Category, COUNT(customer_id) AS customers_count FROM dropped_out
 GROUP BY Product_Category
 ORDER BY customers_count DESC;
 -- customers were looking at wax paper and tin foil.
+
+
+-- For the customers who did not proceed to "check-out" phase from "add-to-cart", which product category were they looking at?
 
 WITH landing_page AS (SELECT customer_id FROM dbo.EcommerceCustomers
 WHERE landing_page = 'TRUE'),
